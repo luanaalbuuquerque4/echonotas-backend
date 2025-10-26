@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StudentService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">echonotas-backend</a> &gt; <a href="index.source.html" class="el_package">com.echonotas.service</a> &gt; <span class="el_source">StudentService.java</span></div><h1>StudentService.java</h1><pre class="source lang-java linenums">package com.echonotas.service;
+
+import com.echonotas.model.Student;
+import com.echonotas.repository.StudentRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class StudentService {
+
+    private final StudentRepository repository;
+
+<span class="fc" id="L15">    public StudentService(StudentRepository repository) {</span>
+<span class="fc" id="L16">        this.repository = repository;</span>
+<span class="fc" id="L17">    }</span>
+
+    public Student create(Student student) {
+<span class="pc bpc" id="L20" title="1 of 4 branches missed.">        if (student.getEmail() == null || !student.getEmail().contains(&quot;@&quot;)) {</span>
+<span class="fc" id="L21">            throw new IllegalArgumentException(&quot;Email inválido&quot;);</span>
+        }
+<span class="fc" id="L23">        return repository.save(student);</span>
+    }
+
+    public Optional&lt;Student&gt; findById(Long id) {
+<span class="nc" id="L27">        return repository.findById(id);</span>
+    }
+
+    public List&lt;Student&gt; findAll() {
+<span class="nc" id="L31">        return repository.findAll();</span>
+    }
+
+    public List&lt;Student&gt; search(String q) {
+<span class="pc bpc" id="L35" title="2 of 4 branches missed.">        if (q == null || q.isBlank()) return findAll();</span>
+<span class="fc" id="L36">        return repository.findByNameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrCourseContainingIgnoreCase(q,q,q);</span>
+    }
+
+    public Student update(Long id, Student student) {
+<span class="fc" id="L40">        Student existing = repository.findById(id)</span>
+<span class="fc" id="L41">                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Aluno não encontrado&quot;));</span>
+<span class="fc" id="L42">        existing.setName(student.getName());</span>
+<span class="fc" id="L43">        existing.setEmail(student.getEmail());</span>
+<span class="fc" id="L44">        existing.setCourse(student.getCourse());</span>
+<span class="fc" id="L45">        existing.setYear(student.getYear());</span>
+<span class="fc" id="L46">        existing.setEnrollmentDate(student.getEnrollmentDate());</span>
+<span class="fc" id="L47">        return repository.save(existing);</span>
+    }
+
+    public void delete(Long id) {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (!repository.existsById(id)) {</span>
+<span class="fc" id="L52">            throw new IllegalArgumentException(&quot;Aluno não encontrado&quot;);</span>
+        }
+<span class="fc" id="L54">        repository.deleteById(id);</span>
+<span class="fc" id="L55">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

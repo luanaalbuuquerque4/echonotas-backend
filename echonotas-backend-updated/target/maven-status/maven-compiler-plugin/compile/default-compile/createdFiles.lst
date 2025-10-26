@@ -1,0 +1,6 @@
+com\echonotas\service\StudentService.class
+com\echonotas\controller\StudentController.class
+com\echonotas\model\Student.class
+com\echonotas\repository\StudentRepository.class
+com\echonotas\EchonotasApplication.class
+com\echonotas\config\JacksonConfig.class
