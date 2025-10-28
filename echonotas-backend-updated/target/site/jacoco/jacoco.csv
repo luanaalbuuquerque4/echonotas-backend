@@ -1,6 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-echonotas-backend,com.echonotas.model,Student,3,60,0,0,1,19,1,13,1,13
-echonotas-backend,com.echonotas,EchonotasApplication,57,0,0,0,8,0,4,0,4,0
-echonotas-backend,com.echonotas.service,StudentService,12,91,3,7,2,20,5,8,2,6
-echonotas-backend,com.echonotas.config,JacksonConfig,15,0,0,0,4,0,2,0,2,0
-echonotas-backend,com.echonotas.controller,StudentController,72,0,4,0,18,0,9,0,7,0
